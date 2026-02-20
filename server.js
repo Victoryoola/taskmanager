@@ -29,9 +29,20 @@ const start = async () => {
 };
 
 start();
+
+// Root route
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'Task Manager API',
+    endpoints: {
+      tasks: '/tasks'
+    }
+  });
+});
+
 app.use('/tasks', taskRoutes);
 
 // Error handler must be added after all routes
 app.use(errorHandler);
 
-app.listen(3000, () => console.log('Server is running on port 3000'));
+app.listen(3000, () => console.log('Server is running on port http://localhost:3000'));
