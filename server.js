@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const taskRoutes = require('./routes/tasks');
+const errorHandler = require('./middleware/errorHandler');
 
 // Load environment variables from a .env file if present (no crash if dotenv isn't installed)
 try { require('dotenv').config(); } catch (e) {}
@@ -19,11 +20,18 @@ const start = async () => {
     await mongoose.connect(MONGODB_URI);
     console.log("Connected to MongoDB");
   } catch (err) {
-    console.error(err);
+    console.error('Failed to connect to MongoDB:', err.message);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Stack:', err.stack);
+    }
+    process.exit(1);
   }
 };
 
 start();
 app.use('/tasks', taskRoutes);
+
+// Error handler must be added after all routes
+app.use(errorHandler);
 
 app.listen(3000, () => console.log('Server is running on port 3000'));

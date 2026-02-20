@@ -7,7 +7,10 @@
   "type": "commonjs",
   "main": "task.js",
   "scripts": {
-    "devStart": "nodemon server.js"
+    "devStart": "nodemon server.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "dotenv": "^17.2.3",
@@ -15,6 +18,10 @@
     "mongoose": "^8.19.3"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "fast-check": "^4.5.3",
+    "jest": "^30.2.0",
+    "mongodb-memory-server": "^11.0.1",
+    "nodemon": "^3.1.10",
+    "supertest": "^7.2.2"
   }
 }
