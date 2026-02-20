@@ -85,8 +85,15 @@ node server.js
 ## API Endpoints
 
 ### Base URL
+
+**Local Development:**
 ```
 http://localhost:3000
+```
+
+**Production (Deployed):**
+```
+https://taskmanagement-api-smmy.onrender.com
 ```
 
 ### Endpoints
